@@ -16,7 +16,7 @@
 # export PHANTOMJS_HOST="https://s3.amazonaws.com/codeship-packages"
 #
 # Include in your builds via
-# \curl -sSL https://raw.githubusercontent.com/nickgsc/scripts/edit/master/packages/phantomjs.sh | bash -s
+# \curl -sSL https://raw.githubusercontent.com/nickgsc/scripts/master/packages/phantomjs.sh | bash -s
 PHANTOMJS_VERSION=${PHANTOMJS_VERSION:="1.9.8"}
 PHANTOMJS_HOST=${PHANTOMJS_HOST:="https://s3.amazonaws.com/gospotcheck-ci"}
 CACHE_DIR=${HOME}/cache
