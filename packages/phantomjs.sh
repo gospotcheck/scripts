@@ -20,6 +20,7 @@
 PHANTOMJS_VERSION=${PHANTOMJS_VERSION:="1.9.8"}
 PHANTOMJS_HOST=${PHANTOMJS_HOST:="https://s3.amazonaws.com/gospotcheck-ci"}
 CACHE_DIR=${HOME}/cache
+TARGET_DIR="${HOME}/.phantomjs/${PHANTOMJS_VERSION}/x86_64-linux"
 
 set -e
 CACHED_DOWNLOAD="${HOME}/cache/phantomjs-${PHANTOMJS_VERSION}-linux-x86_64.tar.bz2"
@@ -27,8 +28,7 @@ CACHED_DOWNLOAD="${HOME}/cache/phantomjs-${PHANTOMJS_VERSION}-linux-x86_64.tar.b
 # clean old version and setup directories
 rm -rf ~/.phantomjs
 mkdir ~/.phantomjs
-if [ ! -d "$CACHE_DIR" ]; then
-  mkdir $CACHE_DIR
-fi
+mkdir -p $CACHE_DIR
 wget --continue --output-document "${CACHED_DOWNLOAD}" "${PHANTOMJS_HOST}/phantomjs-${PHANTOMJS_VERSION}-linux-x86_64.tar.bz2"
-tar -xaf "${CACHED_DOWNLOAD}" --strip-components=1 --directory "${HOME}/.phantomjs/${PHANTOMJS_VERSION}/x86_64-linux"
+mkdir -p $TARGET_DIR
+tar -xaf "${CACHED_DOWNLOAD}" --strip-components=1 --directory "${TARGET_DIR}"
