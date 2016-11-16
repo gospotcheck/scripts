@@ -16,9 +16,10 @@
 # export PHANTOMJS_HOST="https://s3.amazonaws.com/codeship-packages"
 #
 # Include in your builds via
-# \curl -sSL https://raw.githubusercontent.com/codeship/scripts/master/packages/phantomjs.sh | bash -s
+# \curl -sSL https://raw.githubusercontent.com/nickgsc/scripts/edit/master/packages/phantomjs.sh | bash -s
 PHANTOMJS_VERSION=${PHANTOMJS_VERSION:="1.9.8"}
 PHANTOMJS_HOST=${PHANTOMJS_HOST:="https://s3.amazonaws.com/gospotcheck-ci"}
+CACHE_DIR=${HOME}/cache
 
 set -e
 CACHED_DOWNLOAD="${HOME}/cache/phantomjs-${PHANTOMJS_VERSION}-linux-x86_64.tar.bz2"
@@ -26,5 +27,8 @@ CACHED_DOWNLOAD="${HOME}/cache/phantomjs-${PHANTOMJS_VERSION}-linux-x86_64.tar.b
 # clean old version and setup directories
 rm -rf ~/.phantomjs
 mkdir ~/.phantomjs
+if [ ! -d "$CACHE_DIR" ]; then
+  mkdir $CACHE_DIR
+fi
 wget --continue --output-document "${CACHED_DOWNLOAD}" "${PHANTOMJS_HOST}/phantomjs-${PHANTOMJS_VERSION}-linux-x86_64.tar.bz2"
 tar -xaf "${CACHED_DOWNLOAD}" --strip-components=1 --directory "${HOME}/.phantomjs"
