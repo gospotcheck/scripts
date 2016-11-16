@@ -31,4 +31,4 @@ if [ ! -d "$CACHE_DIR" ]; then
   mkdir $CACHE_DIR
 fi
 wget --continue --output-document "${CACHED_DOWNLOAD}" "${PHANTOMJS_HOST}/phantomjs-${PHANTOMJS_VERSION}-linux-x86_64.tar.bz2"
-tar -xaf "${CACHED_DOWNLOAD}" --strip-components=1 --directory "${HOME}/.phantomjs"
+tar -xaf "${CACHED_DOWNLOAD}" --strip-components=1 --directory "${HOME}/.phantomjs/${PHANTOMJS_VERSION}/x86_64-linux"
